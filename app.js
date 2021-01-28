@@ -1,5 +1,20 @@
-// import functions and grab DOM elements
+import { setUser } from './utils/utils.js';
 
-// initialize state
+const newUserForm = document.getElementById('new-user');
 
-// set event listeners to update state and DOM
+newUserForm.addEventListener('submit', (e) => {
+    e.preventDefault;
+
+    const formData = new FormData(newUserForm);
+
+    const user = {
+        name: formData.get('name'),
+        color: formData.get('color'),
+        completed: {},
+
+    };
+
+    setUser(user);
+
+    window.location = './q-list/index.html';
+});

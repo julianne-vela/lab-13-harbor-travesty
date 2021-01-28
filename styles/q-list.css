@@ -1,3 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
 
 body {
     /* https://coolors.co/generate and click export -> scss to get the colors to copy and paste below*/
@@ -20,6 +30,14 @@ body {
     
     font-family: 'Titillium Web', sans-serif;
     background-color: var(--color2);
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--color3);
+    height: var(--header-height);
+    box-shadow: var(--shadow);
 }
 
 main {
@@ -45,49 +63,6 @@ section {
     border: solid 2px var(--color1);
 }
 
-header {
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    height: var(--header-height);
-    box-shadow: var(--shadow);
-}
-
-footer {
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    box-shadow: var(--shadow);
-}
-
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.gutter-right {
-    margin-right: 20px;
-}
-
-.main-logo {
-    animation: pulse 5s infinite ease-in-out;
-}
-
-header img {
-    height: var(--header-height);
-}
-
-
-
-content {
-    width: 80%;
-}
-
-p {
-    margin: var(--gutter);
-}
-  
 footer {
     position: fixed;
     width: 100%;
