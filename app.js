@@ -9,12 +9,14 @@ newUserForm.addEventListener('submit', (e) => {
 
     const user = {
         name: formData.get('name'),
-        color: formData.get('color'),
+        race: formData.get('race'),
         completed: {},
+        hp: 50,
+        gold: 0,
 
     };
 
     setUser(user);
 
-    window.location = './q-list/index.html';
+    window.location = './quest-list/index.html';
 });
