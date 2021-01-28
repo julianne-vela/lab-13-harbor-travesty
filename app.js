@@ -3,7 +3,7 @@ import { setUser } from './utils/utils.js';
 const newUserForm = document.getElementById('new-user');
 
 newUserForm.addEventListener('submit', (e) => {
-    e.preventDefault;
+    e.preventDefault();
 
     const formData = new FormData(newUserForm);
 

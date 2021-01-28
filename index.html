@@ -17,29 +17,37 @@
     </header>
     <main>
         <section class="main-section">
-            <h1>The Mysterious Mansion</h1>
+            <h1>Harbor Travesty</h1>
             <p class="intro">
                 <!-- Insert User Instructions here -->
             </p>
             <form id="new-user" action="./quest-list/index.html">
-                <fieldset name="new-user">
-                    <legend> Create your User Profile </legend>
-                    <label for="username">
-                        Enter Username
-                        <input type="text" name="username">
-                    </label>
-                    <label for="color">
-                        Select your Color
-                        <select name="usercolor" id="user-color">
-                            <option value="red">Red</option>
-                            <option value="magenta">Magenta</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="blue">Blue</option>
-                            <option value="green">Green</option>
-                        </select>
-                    </label>
-                </fieldset>
-                <button id="newUserSubmit">Create User</button>
+                <label for="name">
+                    What is your character's name?
+                    <input type="text" name="name">
+                </label>
+                What is your race?
+                <label>
+                    Human
+                    <input name="race" value="human" type="radio" />
+                </label>
+                <label>
+                    Elf
+                    <input name="race" value="elf" type="radio" />
+                </label>
+                <label>
+                    Orc
+                    <input name="race" value="orc" type="radio" />
+                </label>
+                <label>
+                    Gnome
+                    <input name="race" value="gnome" type="radio" />
+                </label>
+                <label>
+                    Pixie
+                    <input name="race" value="pixie" type="radio" />
+                </label>
+                <button id="newUserSubmit">Start your Adventure!</button>
             </form>
         </section>
     </main>

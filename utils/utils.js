@@ -33,7 +33,5 @@ export function harborEncounters() {
         hp: -30,
         gold: -30, // maybe clear to zero, if possible.
         result: 'Oh no! You were ambushed by a group of bandits! They beat you up and took all your gold! You lose 30 HP and 30 Gold.'
-    }],
-
-    return harborEncounters;
+    }];
 }

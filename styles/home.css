@@ -59,6 +59,10 @@ section {
     border: solid 2px var(--color1);
 }
 
+input {
+    display: block;
+}
+
 footer {
     position: fixed;
     width: 100%;

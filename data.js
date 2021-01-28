@@ -5,7 +5,7 @@ export const quests = [{
     description: 'You wake up in a dark, cold forest. It is raining and you are shivering. You see a light in the distance. What do you do?',
     choices: [{
         id: 'stay',
-        description: 'stay where you\'re at. Someone is bound to come looking for you.',
+        description: 'You stay where you\'re at. Someone is bound to come looking for you...eventually.',
         hp: -10,
         gold: 0,
         result: 'You suffer from hypothermia and contract the flu. You lose 10 HP.'
