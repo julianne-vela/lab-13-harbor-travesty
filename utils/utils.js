@@ -1,4 +1,3 @@
-
 const USER = 'USER';
 
 export function setUser(user) {
@@ -12,3 +11,4 @@ export function getUser() {
 export function findById(myArray, id) {
     return myArray.find(item => item.id === id);
 }
+

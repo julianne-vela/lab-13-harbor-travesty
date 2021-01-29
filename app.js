@@ -11,12 +11,12 @@ newUserForm.addEventListener('submit', (e) => {
         name: formData.get('name'),
         race: formData.get('race'),
         completed: {},
-        hp: 50,
+        hp: 100,
         gold: 0,
 
     };
 
     setUser(user);
 
-    window.location = './quest-log/index.html';
+    window.location = './adventure/?id=dark-forest';
 });

@@ -1,84 +1,100 @@
-import { findById, setUser } from '../utils/utils.js';
-import { adventures } from '../data.js';
+import {
+    findById,
+    setUser,
+} from '../utils/utils.js';
+import {
+    beginningQuest,
+    mainQuest,
+} from '../data.js';
+import beginningQuestFill from './dark-forest.js';
 
-const USER = 'USER'; // magic string
-// page-wide elements
+const USER = 'USER';
 const params = new URLSearchParams(window.location.search);
 const questId = params.get('id');
+const quest = findById(mainQuest, questId);
 
-const quest = findById(adventures, questId);
+// start on beginning quest Dark Forest //
+if (questId === beginningQuest.id) {
+    beginningQuestFill();
+} else {
+    // main quest Journey Home //
+    const h1 = document.getElementById('quest-title');
+    h1.textContent = quest.title.toUpperCase();
+    const p = document.getElementById('quest-desc');
+    p.textContent = quest.description;
+    const img = document.getElementById('quest-img');
+    img.src = `../assets/quest-imgs/${quest.image}`;
+    const form = document.getElementById('quest-form');
 
+    for (let encounter of quest.encounters) {
+        const radio = document.createElement('input');
+        const label = document.createElement('label');
+        const span = document.createElement('span');
 
-// main section elements
-const h1 = document.getElementById('quest-title');
-h1.textContent = quest.title.toUpperCase();
-const p = document.getElementById('quest-desc');
-p.textContent = quest.description;
-const img = document.getElementById('quest-img');
-img.src = `../assets/quest-imgs/${quest.image}`;
-const form = document.getElementById('quest-form');
+        span.textContent = encounter.description;
 
-for (let choice of quest.choices) {
-    const radio = document.createElement('input');
-    const label = document.createElement('label');
-    const span = document.createElement('span');
+        radio.type = 'radio';
+        radio.value = encounter.id;
+        radio.name = 'encounters';
 
-    span.textContent = choice.description;
+        label.append(span, radio);
 
-    radio.type = 'radio';
-    radio.value = choice.id;
-    radio.name = 'choices';
+        form.append(label);
+    }
 
-    label.type = 'submit';
-    label.append(span, radio);
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'MAKE AN INSIGHT CHECK';
+    submitBtn.id = 'submit-btn';
+    form.appendChild(submitBtn);
 
-    form.append(label);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const selectionId = formData.get('encounters');
+        const encounter = findById(quest.encounters, selectionId);
+
+        const user = JSON.parse(localStorage.getItem(USER));
+
+        if (encounter.id === 'slowly-pass') {
+            user.hp += encounter.hp;
+            user.gold = 0;
+        } else {
+            user.hp += encounter.hp;
+            user.gold += encounter.gold;
+        }
+
+        user.completed[quest.id] = true;
+
+        setUser(user);
+
+        // hide main section
+        const main = document.querySelector('.main');
+        main.style.display = 'none';
+
+        // display hidden-results section with selection results
+        const results = document.querySelector('.results');
+        results.style.display = 'block';
+        const resultsP = document.getElementById('display-results');
+        if (encounter.hp <= 0) {
+            resultsP.textContent = `Welp, you weren't very insightful today. ` + encounter.result;
+        } else {
+            resultsP.textContent = encounter.result;
+        }
+    });
+
+    // results section elements
+    const resultsSect = document.querySelector('.results');
+    const continueBtn = document.createElement('button');
+    continueBtn.textContent = 'Continue with story';
+    continueBtn.id = 'continue-btn';
+    resultsSect.append(continueBtn);
+
+    continueBtn.addEventListener('click', () => {
+        window.location = '../journey/index.html';
+    });
 }
-
-const submitBtn = document.createElement('button');
-submitBtn.textContent = '...awkward silence...';
-submitBtn.id = 'submit-btn';
-form.appendChild(submitBtn);
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    const selectionId = formData.get('choices');
-    const choice = findById(quest.choices, selectionId);
-
-    const user = JSON.parse(localStorage.getItem(USER));
-
-    user.hp += choice.hp;
-    user.gold += choice.gold;
-
-    user.completed[questId] = true;
-
-    setUser(user);
-
-    // hide main section
-    const main = document.querySelector('.main');
-    main.style.display = 'none';
-
-    // display hidden-results section with selection results
-    const results = document.querySelector('.results');
-    results.style.display = 'block';
-    const resultsP = document.getElementById('display-results');
-    resultsP.textContent = choice.result;
-});
-
-// results section elements
-const resultsSect = document.querySelector('.results');
-const continueBtn = document.createElement('button');
-continueBtn.textContent = 'Continue with story';
-continueBtn.id = 'continue-btn';
-resultsSect.append(continueBtn);
-
-continueBtn.addEventListener('click', () => {
-    window.location = '../quest-log/index.html';
-});
-
 
 
 

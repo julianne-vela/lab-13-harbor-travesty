@@ -29,7 +29,8 @@ body {
     --footer-height: 25px;
     
     font-family: 'Titillium Web', sans-serif;
-    background-color: var(--color2);
+    background-color: black;
+    color: whitesmoke;
 }
 
 header {
@@ -41,30 +42,31 @@ header {
 }
 
 main {
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: calc(var(--footer-height));
 }
 
 section {
-    background-color: var(--color5);
-    width: 1000px;
-    max-width: 80%;
+    height: fit-content;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin-top: var(--gutter);
-    margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
+    background-image: url(../assets/quest-imgs/journey-map.jpg);
+    background-size: cover;
 }
 
+/* img {
+    width: 100%;
+    transform: scale(1, 0.7);
+    border-radius: 40%;
+} */
+  
+
 footer {
-    position: fixed;
     width: 100%;
     bottom: 0;
     height: var(--footer-height);
@@ -73,7 +75,7 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
-  
+
   @keyframes pulse {
     20% {
       transform: rotate3d(-10, -10, -10, 50deg) scale(1.2);
