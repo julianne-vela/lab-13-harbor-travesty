@@ -18,5 +18,5 @@ newUserForm.addEventListener('submit', (e) => {
 
     setUser(user);
 
-    window.location = './quest-list/index.html';
+    window.location = './quest-log/index.html';
 });
