@@ -137,16 +137,31 @@ export const resultMessages = [
     {
         id: 'ded',
         image: '',
-        message: 'Womp Womp! You couldn\'t survive the journey back home to Harbor Town. What a travesty!'
+        message: 'Womp Womp! You couldn\'t survive the journey back home to Harbor Town. What a travesty!',
+        status: {
+            poor: 'You lost all your gold to bandits and gambling. Your family is left with nothing but humiliation.',
+            modest: 'You managed to save a bit of gold from your enemies and leave that to your family upon death. It\'s not much, but at least they can buy some bread.',
+            rich: 'Upon death, your body was found with a cryptic message and a map. When given to your family, they realized this was the location of your stash and were the only ones able to decode it. They lived a long and weathly life thanks to your prowess.',
+        }
     },
     {
         id: 'mediocre',
         image: '',
         message: 'Wow! You just barely made it back home. You were really cutting it close there. I mean, it wasn\'t THAT difficult of a game!',
+        status: {
+            poor: 'You lost all your gold to bandits and gambling. Your family shuns you and you are left to your own squally in the streets of Habor Town.',
+            modest: 'You managed to save a bit of gold from your enemies so you and your family have something to live off of. It\'s not much, but at least you can buy some bread.',
+            rich: 'You became very adept at deception and subterfuge throughout your travels. This allowed you to easily hide your gold and riches from your enemies so while you may not be in the best of heath, at least you and your family can live a wealthy lifestyle.',
+        }
     },
     {
         id: 'master-adventurer',
         image: '',
         message: `Her ye her ye! All hail the Master Adventurer! It is so decreed that ${getUser().name} is the best adventurer to cross these lands! Shower them with riches and praise!`,
+        status: {
+            poor: 'While you may be the greatest adventurer around, you certainly aren\'t the best gold-manager. You had a bit of a gambling problem from all the fame and glory and lost all your gold.',
+            modest: 'Not only were you able to survive the trevails of your adventure, but you were even able to hang on to a bit of your gold so you can live comfortably in your glory with your family by your side.',
+            rich: 'Rightfully so, a Master Adventurer also must be a master at subterfuge. You were able to easily deceive your enemies and stash your gold and riches away during your travels. Upon returning home, you were granted a trove of treasure and a castle on the hill. You and your family live out the rest of your long life in luxury and bliss.',
+        }
     }
 ];

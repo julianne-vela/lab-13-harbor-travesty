@@ -29,17 +29,15 @@ if (questId === beginningQuest.id) {
     for (let encounter of quest.encounters) {
         const radio = document.createElement('input');
         const label = document.createElement('label');
-        const span = document.createElement('span');
 
-        span.textContent = encounter.description;
-
+        radio.id = encounter.id;
         radio.type = 'radio';
         radio.value = encounter.id;
         radio.name = 'encounters';
 
-        label.append(span, radio);
+        label.textContent = encounter.description;
 
-        form.append(label);
+        form.append(radio, label);
     }
 
     const submitBtn = document.createElement('button');
@@ -54,6 +52,7 @@ if (questId === beginningQuest.id) {
 
         const selectionId = formData.get('encounters');
         const encounter = findById(quest.encounters, selectionId);
+        console.log(encounter);
 
         const user = JSON.parse(localStorage.getItem(USER));
 

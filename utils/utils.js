@@ -12,3 +12,8 @@ export function findById(myArray, id) {
     return myArray.find(item => item.id === id);
 }
 
+export function isDead(user) {
+    return user.hp <= 0;
+}
+
+

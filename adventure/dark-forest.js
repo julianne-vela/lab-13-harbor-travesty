@@ -18,22 +18,20 @@ export default function beginningQuestFill() {
     for (let choice of beginningQuest.choices) {
         const radio = document.createElement('input');
         const label = document.createElement('label');
-        const span = document.createElement('span');
-
-        span.textContent = choice.description;
-
+        // const span = document.createElement('span');
+        radio.id = choice.id;
         radio.type = 'radio';
         radio.value = choice.id;
         radio.name = 'choices';
 
-        label.type = 'submit';
-        label.append(span, radio);
+        label.textContent = choice.description;
+        label.htmlFor = radio.id;
 
-        form.append(label);
+        form.append(radio, label);
     }
 
     const submitBtn = document.createElement('button');
-    submitBtn.textContent = '...awkward silence...';
+    submitBtn.textContent = 'ROLL FOR INITIATIVE';
     submitBtn.id = 'submit-btn';
     form.appendChild(submitBtn);
 

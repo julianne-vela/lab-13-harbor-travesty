@@ -93,13 +93,23 @@ label {
     border-radius: 5px;
 }
 
+input {
+    display: none;
+}
+
+label:active {
+    border: 1px inset rgb(23, 204, 23);
+    box-shadow: 5px 5px 25px rgb(23, 204, 23);
+}
+
 label:hover {
     border: 1px inset rgb(23, 204, 23);
     box-shadow: 5px 5px 25px rgb(23, 204, 23);
 } 
 
-input {
-    display: none;
+input:checked + label {
+    border: 1px inset rgb(23, 204, 23);
+    box-shadow: 5px 5px 25px rgb(23, 204, 23);
 }
 
 #submit-btn {
