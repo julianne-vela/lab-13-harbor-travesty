@@ -2,13 +2,16 @@ import { beginningQuest } from '../data.js';
 import {
     findById,
     setUser,
+    loadUserProfile,
+    capitalizeFirstLetter
 } from '../utils/utils.js';
 
+loadUserProfile();
 const USER = 'USER';
 
 export default function beginningQuestFill() {
     const h1 = document.getElementById('quest-title');
-    h1.textContent = beginningQuest.title.toUpperCase();
+    h1.textContent = capitalizeFirstLetter(beginningQuest.title);
     const p = document.getElementById('quest-desc');
     p.textContent = beginningQuest.description;
     const img = document.getElementById('quest-img');
@@ -31,7 +34,7 @@ export default function beginningQuestFill() {
     }
 
     const submitBtn = document.createElement('button');
-    submitBtn.textContent = 'ROLL FOR INITIATIVE';
+    submitBtn.textContent = capitalizeFirstLetter('roll for initiative');
     submitBtn.id = 'submit-btn';
     form.appendChild(submitBtn);
 
@@ -58,7 +61,7 @@ export default function beginningQuestFill() {
 
         // display hidden-results section with selection results
         const results = document.querySelector('.results');
-        results.style.display = 'block';
+        results.style.display = 'flex';
         const resultsP = document.getElementById('display-results');
         resultsP.textContent = choice.result;
     });

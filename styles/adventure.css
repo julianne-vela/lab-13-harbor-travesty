@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Rosemary Roman;
+    src: url(../assets/fonts/Rosemary\ Roman.ttf) format('truetype');
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,36 +14,52 @@ body, html {
     margin: 0;
 }
 
-body {
-    /* https://coolors.co/generate and click export -> scss to get the colors to copy and paste below*/
-    /* --color1: hsla(349, 69%, 76%, 1);
-    --color2: hsla(207, 67%, 44%, 1);
-    --color3: hsla(200, 61%, 56%, 1);
-    --color4: hsla(187, 41%, 94%, 1);
-    --color5: hsla(170, 28%, 95%, 1); */
-/* 
-    /* --color1: hsla(45, 86%, 83%, 1);
-    --color2: hsla(135, 65%, 98%, 1);
-    --color3: hsla(315, 37%, 86%, 1);
-    --color4: hsla(45, 73%, 98%, 1);
-    --color5: hsla(224, 40%, 79%, 1); */
-    
+body {    
     --header-height: 80px;
-    --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
+    --shadow: 5px 5px 25px rgb(23, 204, 23);
     --gutter: 30px;
     --footer-height: 25px;
     
-    font-family: 'Titillium Web', sans-serif;
     background-color: black;
     color: whitesmoke;
+    font-family: Rosemary Roman;
 }
 
 header {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header > h1 {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 3rem;
+    color: lawngreen;
+    text-shadow: 4px 4px 5px darkolivegreen;
+}
+
+header .user-profile {
+    display: inline-flex;
+    flex-direction: row;
     justify-content: flex-end;
-    background-color: var(--color3);
-    height: var(--header-height);
-    box-shadow: var(--shadow);
+    align-items: center;
+    font-size: 1.3rem;
+    line-height: 0.5;
+    color: whitesmoke;
+    margin: 5px 5px 0 0;
+    padding: 5px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+
+img#avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
 main {
@@ -49,36 +70,38 @@ main {
     margin-bottom: calc(var(--footer-height));
 }
 
-section {
-    width: 1000px;
-    max-width: 80%;
+section.main {
+    position: relative;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-section.main {
-    position: relative;
+    box-shadow: var(--shadow);
+    border-radius: 20px;
 }
 
 section.main > p {
     position: absolute;
+    top: 5%;
     width: 50%;
     background-color: rgba(10, 10, 10, 0.5);
     padding: 20px;
     text-align: center;
     font-size: 1.3rem;
+    font-family: cursive;
     border: 1px dotted white;
     border-radius: 10px;
 }
 
-img {
-    width: 80%;
+section > img {
+    width: 100%;
     border-radius: 10px;
 }
 
 form {
+    position: absolute;
+    top: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -88,7 +111,8 @@ form {
 }
 
 label {
-    background-color: darkolivegreen;
+    background-color: rgba(85, 107, 47, 0.5);
+    font-size: 1.5rem;
     padding: 5px;
     border-radius: 5px;
 }
@@ -99,35 +123,48 @@ input {
 
 label:active {
     border: 1px inset rgb(23, 204, 23);
-    box-shadow: 5px 5px 25px rgb(23, 204, 23);
+    box-shadow: var(--shadow);
 }
 
 label:hover {
     border: 1px inset rgb(23, 204, 23);
-    box-shadow: 5px 5px 25px rgb(23, 204, 23);
+    box-shadow: var(--shadow);
 } 
 
 input:checked + label {
     border: 1px inset rgb(23, 204, 23);
-    box-shadow: 5px 5px 25px rgb(23, 204, 23);
+    box-shadow: var(--shadow);
 }
 
 #submit-btn {
-    background: none;
+    background: black;
     border: 1px outset darkolivegreen;
     border-radius: 5px;
     color: whitesmoke;
     padding: 5px;
+    font-family: Rosemary Roman;
+    font-size: 1.3rem;
 }
 
 section.results {
     display: none;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(85, 107, 47, .5);
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+    font-family: cursive;
 }
 
 #continue-btn {
-    background: none;
+    background: black;
     border: 1px outset darkolivegreen;
     border-radius: 5px;
+    font-size: 1.3rem;
+    font-family: Rosemary Roman;
     color: whitesmoke;
     padding: 5px;
 }
@@ -138,8 +175,6 @@ footer {
     height: var(--footer-height);
     display: flex;
     justify-content: flex-end;
-    background-color: var(--color3);
-    box-shadow: var(--shadow);
 }
 
   @keyframes pulse {

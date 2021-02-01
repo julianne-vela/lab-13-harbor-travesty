@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/home.css">
     <title>Document</title>
@@ -13,41 +12,44 @@
 
 <body>
     <header>
-
+        Harbor Travesty
     </header>
     <main>
-        <section class="main-section">
-            <h1>Harbor Travesty</h1>
-            <p class="intro">
-                <!-- Insert User Instructions here -->
-            </p>
-            <form id="new-user" action="./quest-list/index.html">
-                <label for="name">
-                    What is your character's name?
-                    <input type="text" name="name">
-                </label>
-                What is your race?
-                <label for="race">
-                    Human
-                    <input type="radio" name="race" value="human" />
-                </label>
-                <label for="race">
-                    Elf
-                    <input type="radio" name="race" value="elf" />
-                </label>
-                <label for="race">
-                    Orc
-                    <input type="radio" name="race" value="orc" />
-                </label>
-                <label for="race">
-                    Gnome
-                    <input type="radio" name="race" value="gnome" />
-                </label>
-                <label for="race">
-                    Pixie
-                    <input type="radio" name="race" value="pixie" />
-                </label>
-                <button id="newUserSubmit">Start your Adventure!</button>
+        <section class="main">
+            <content class="intro">
+                <!-- Insert Game Info Here -->
+            </content>
+            <form id='new-user' action="./journey/index.html">
+                <fieldset id="name">
+                    <legend class='name-legend'></legend>
+                    <label for="name">
+                        <input type="text" name="name" required>
+                    </label>
+                </fieldset>
+                <fieldset id="race">
+                    <legend class="race-legend"></legend>
+                    <input type="radio" name="race" value="human" id="human">
+                    <label for="human">
+                        <img src="./assets/avatars/human.png">
+                    </label>
+                    <input type="radio" name="race" value="elf" id="elf">
+                    <label for="elf">
+                        <img src="./assets/avatars/elf.png">
+                    </label>
+                    <input type="radio" name="race" value="orc" id='orc'>
+                    <label for="orc">
+                        <img src="./assets/avatars/orc.png">
+                    </label>
+                    <input type="radio" name="race" value="gnome" id='gnome'>
+                    <label for="gnome">
+                        <img src="./assets/avatars/gnome.png" alt="">
+                    </label>
+                    <input type="radio" name="race" value="pixie" id='pixie'>
+                    <label for="pixie">
+                        <img src="./assets/avatars/pixie.png">
+                    </label>
+                </fieldset>
+                <button id="new-user-submit"></button>
             </form>
         </section>
     </main>

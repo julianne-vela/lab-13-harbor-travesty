@@ -1,99 +1,68 @@
 import {
     findById,
+    loadUserProfile,
+    capitalizeFirstLetter,
     setUser,
+    getUser
 } from '../utils/utils.js';
+
 import {
-    beginningQuest,
-    mainQuest,
-} from '../data.js';
-import beginningQuestFill from './dark-forest.js';
+    renderQuest,
+    form,
+    questObject
+} from '../journey/quest-utils.js';
 
-const USER = 'USER';
-const params = new URLSearchParams(window.location.search);
-const questId = params.get('id');
-const quest = findById(mainQuest, questId);
+loadUserProfile();
 
-// start on beginning quest Dark Forest //
-if (questId === beginningQuest.id) {
-    beginningQuestFill();
-} else {
-    // main quest Journey Home //
-    const h1 = document.getElementById('quest-title');
-    h1.textContent = quest.title.toUpperCase();
-    const p = document.getElementById('quest-desc');
-    p.textContent = quest.description;
-    const img = document.getElementById('quest-img');
-    img.src = `../assets/quest-imgs/${quest.image}`;
-    const form = document.getElementById('quest-form');
+const main = document.querySelector('.main');
+const results = document.querySelector('.results');
+const resultsP = document.getElementById('display-results');
+const continueBtn = document.createElement('button');
 
-    for (let encounter of quest.encounters) {
-        const radio = document.createElement('input');
-        const label = document.createElement('label');
 
-        radio.id = encounter.id;
-        radio.type = 'radio';
-        radio.value = encounter.id;
-        radio.name = 'encounters';
+renderQuest();
+const submitBtn = document.createElement('button');
+submitBtn.textContent = capitalizeFirstLetter('make an insight check');
+submitBtn.id = 'submit-btn';
+form.appendChild(submitBtn);
 
-        label.textContent = encounter.description;
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-        form.append(radio, label);
+    const formData = new FormData(form);
+    const choiceId = formData.get('choices');
+    const questChoices = questObject.choices;
+    const choice = findById(questChoices, choiceId);
+
+    const user = getUser();
+
+    if (choice.id === 'slowly-pass') {
+        user.hp += choice.hp;
+        user.gold = 0;
+    } else {
+        user.hp += choice.hp;
+        user.gold += choice.gold;
     }
 
-    const submitBtn = document.createElement('button');
-    submitBtn.textContent = 'MAKE AN INSIGHT CHECK';
-    submitBtn.id = 'submit-btn';
-    form.appendChild(submitBtn);
+    user.completed[questObject.id] = true;
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    setUser(user);
 
-        const formData = new FormData(form);
+    main.style.display = 'none';
+    results.style.display = 'flex';
 
-        const selectionId = formData.get('encounters');
-        const encounter = findById(quest.encounters, selectionId);
-        console.log(encounter);
+    if (choice.hp <= 0) {
+        resultsP.textContent = `Welp, you weren't very insightful today. ` + choice.result;
+    } else {
+        resultsP.textContent = choice.result;
+    }
 
-        const user = JSON.parse(localStorage.getItem(USER));
-
-        if (encounter.id === 'slowly-pass') {
-            user.hp += encounter.hp;
-            user.gold = 0;
-        } else {
-            user.hp += encounter.hp;
-            user.gold += encounter.gold;
-        }
-
-        user.completed[quest.id] = true;
-
-        setUser(user);
-
-        // hide main section
-        const main = document.querySelector('.main');
-        main.style.display = 'none';
-
-        // display hidden-results section with selection results
-        const results = document.querySelector('.results');
-        results.style.display = 'block';
-        const resultsP = document.getElementById('display-results');
-        if (encounter.hp <= 0) {
-            resultsP.textContent = `Welp, you weren't very insightful today. ` + encounter.result;
-        } else {
-            resultsP.textContent = encounter.result;
-        }
-    });
-
-    // results section elements
-    const resultsSect = document.querySelector('.results');
-    const continueBtn = document.createElement('button');
     continueBtn.textContent = 'Continue with story';
     continueBtn.id = 'continue-btn';
-    resultsSect.append(continueBtn);
+    results.append(continueBtn);
 
     continueBtn.addEventListener('click', () => {
         window.location = '../journey/index.html';
+
     });
-}
-
-
-
+});
