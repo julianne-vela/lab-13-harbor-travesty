@@ -1,4 +1,4 @@
-### Logic Puzzle
+### User Adventure
 
 ## User Info Page - Home
     1. Displays instructions for completing the puzzle
